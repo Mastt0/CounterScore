@@ -22,15 +22,17 @@ export default function App() {
       </View>
       <StatusBar style="auto" />
       <View style={styles.counterBox}>
-        <Text style={styles.counterText}>Counter: {counter}</Text>
+        <Text style={styles.counterText}>{counter}</Text>
       </View>
-      <TouchableOpacity
-        style={styles.button}
-        onPress={incrementCounter}
-        activeOpacity={0.8}
-      >
-        <Text style={styles.buttonText}>Button</Text>
-      </TouchableOpacity>
+      <View style={styles.buttonContainer}>
+        <TouchableOpacity
+          style={styles.button}
+          onPress={incrementCounter}
+          activeOpacity={0.8}
+        >
+          <Text style={styles.buttonText}>Button</Text>
+        </TouchableOpacity>
+      </View>
       <TouchableOpacity
         style={styles.resetButton}
         onPress={resetCounter}
@@ -46,9 +48,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "flex-end",
+    alignItems: "center",
     justifyContent: "center",
-    paddingRight: 20,
   },
   header: {
     position: "absolute",
@@ -59,16 +60,21 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 20,
     fontWeight: "bold",
-    paddingTop: 120,
+    paddingTop: 140,
   },
   counterBox: {
     backgroundColor: "rgba(255, 255, 255, 0.5)",
-    padding: 10,
-    marginBottom: 20,
+    marginTop: 100,
+    marginBottom: 100,
   },
   counterText: {
-    fontSize: 16,
+    fontSize: 70,
     fontWeight: "bold",
+  },
+  buttonContainer: {
+    alignItems: "center",
+    marginTop: 0,
+    marginBottom: 40,
   },
   button: {
     backgroundColor: "#E94817",
