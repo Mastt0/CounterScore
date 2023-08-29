@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity, Alert } from "react-native";
 import React, { useState, useEffect } from "react";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -38,8 +38,28 @@ export default function App() {
     setCounter(counter + 1);
   };
 
+  const decrementCounter = () => {
+    setCounter(counter - 1);
+  };
+
   const resetCounter = () => {
-    setCounter(0);
+    Alert.alert(
+      "Reset Confirmation",
+      "Are you sure you want to reset the counter?",
+      [
+        {
+          text: "Cancel",
+          style: "cancel",
+        },
+        {
+          text: "Reset",
+          style: "destructive",
+          onPress: () => {
+            setCounter(0);
+          },
+        },
+      ]
+    );
   };
 
   return (
@@ -53,13 +73,22 @@ export default function App() {
       <View style={styles.counterBox}>
         <Text style={styles.counterText}>{counter}</Text>
       </View>
-      <View style={styles.buttonContainer}>
+      <View style={styles.buttonPlusContainer}>
         <TouchableOpacity
-          style={styles.button}
+          style={styles.buttonPlus}
           onPress={incrementCounter}
           activeOpacity={0.8}
         >
-          <Text style={styles.buttonText}>+1</Text>
+          <Text style={styles.buttonPlusText}>+1</Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.buttonMinusContainer}>
+        <TouchableOpacity
+          style={styles.buttonMinus}
+          onPress={decrementCounter}
+          activeOpacity={0.8}
+        >
+          <Text style={styles.buttonMinusText}>-1</Text>
         </TouchableOpacity>
       </View>
       <TouchableOpacity
@@ -100,12 +129,12 @@ const styles = StyleSheet.create({
     fontSize: 70,
     fontWeight: "bold",
   },
-  buttonContainer: {
+  buttonPlusContainer: {
     alignItems: "center",
     marginTop: 0,
     marginBottom: 40,
   },
-  button: {
+  buttonPlus: {
     backgroundColor: "#64E010",
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -113,7 +142,27 @@ const styles = StyleSheet.create({
     width: 180,
     height: 100,
   },
-  buttonText: {
+  buttonPlusText: {
+    color: "black",
+    fontSize: 50,
+    fontWeight: "bold",
+    textAlign: "center",
+    textAlignVertical: "center",
+  },
+  buttonMinusContainer: {
+    alignItems: "center",
+    marginTop: 0,
+    marginBottom: 40,
+  },
+  buttonMinus: {
+    backgroundColor: "red",
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    borderRadius: 5,
+    width: 180,
+    height: 100,
+  },
+  buttonMinusText: {
     color: "black",
     fontSize: 50,
     fontWeight: "bold",
