@@ -2,7 +2,7 @@
 
 - The purpose of this app is to keep track of the points for the user and their friends.
 
-- On the home screen, the user is given the option to "Start New Game" and will then be able to select all the users they want, as well as create new ones. This includes a custom name for the user, as well as a custom desciption/ notes section. This could be useful for many things. For example, they create two users, "Team 1", and "Team 2", and they use the description to list out the names of everyone on that specific team.
+- On the home screen, the user is given the option to "Start New Game" and will then be able to select all the users they want, as well as create new ones.
 
 - Created users need to be saved to the local storage, so that they do not need to re create them every time they start a new game or open the app.
 
@@ -18,10 +18,21 @@
 
 ## Incomplete Tasks:
 
-- Create a button to "Start New Game", which gives a pop up (Something better than an alert, if possible) to choose how many rounds the game will have.
-- The user will be able to
-- Modify the button to change how much the counter increments by
-- Style Page
+- Create a "tab page" (3 lines in corner) to use as your navigation. Add the following pages: New Game, Players (Edit/Add Players, and Select Player Color), Increment Amount.
+
+- Create a button to "Start New Game", which gives a pop up (Something better than an alert, if possible), prompting the user to select which users are playing from the saved storage. Or they have an option to add a new user.
+- After the user taps "Start New Game", and selects users, automatically take them to a new page where the game score is tracked. This page should not be accessible from anywhere else on the app.
+
+- Game Score Page: Display each player with their score for the current round, and their total score for all the rounds so far.
+- Game Score Page: There should also be 2 buttons on the same line as their name to increase their score (increment add, and manual add)
+- Game Score Page: You will need to decide if it is better to do a horizontal or vertical view, or the option to switch between the two.
+- Game Score Page: Finally, you will need to code the logic to have the scores be added correctly.
+
+- Players Page: Display all the current players saved to storage.
+- Players Page: Put a button at the top where the user can create a new player.
+- When the user clicks the add new player button, they will be given a form where they can enter the players name and color choice. (This form popup should be the same as when the user adds a new player from the "New Game" page)
+
+- Style/Color all pages
 
 ## Completed Tasks:
 
