@@ -1,12 +1,11 @@
-import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
-// import { StatusBar } from "expo-statuar";sb
+import { StatusBar } from "expo-status-bar";
 
 export default function Home() {
   return (
     <View style={styles.container}>
       <Text>Is it working?</Text>
-      {/* <StatusBar style="auto" /> */}
+      <StatusBar style="auto" />
     </View>
   );
 }
@@ -19,24 +18,3 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
-
-// const HomeScreen = () => {
-//   const navigation = useNavigation();
-
-//   const toggleDrawer = () => {
-//     navigation.dispatch(DrawerActions.toggleDrawer());
-//   };
-
-//   const runStartGame = () => {
-//     navigation.navigate("Players");
-//   };
-
-//   return (
-//     <View>
-//       <Button title="Toggle Drawer" onPress={toggleDrawer} />
-//       <Button title="Start Game" onPress={runStartGame} />
-//     </View>
-//   );
-// };
-
-// export default HomeScreen;

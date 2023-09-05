@@ -1,12 +1,11 @@
-import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
-// import { StatusBar } from "expo-statusbar";
+import { StatusBar } from "expo-status-bar";
 
 export default function Players() {
   return (
     <View style={styles.container}>
       <Text>Players</Text>
-      {/* <StatusBar style="auto" /> */}
+      <StatusBar style="auto" />
     </View>
   );
 }

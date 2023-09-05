@@ -1,4 +1,3 @@
-import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Home from "../screens/Home";
 import Players from "../screens/Players";
