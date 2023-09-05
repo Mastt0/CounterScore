@@ -1,7 +1,5 @@
 import React from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
-import { useNavigation } from "@react-navigation/native";
-import { DrawerActions } from "@react-navigation/native";
 // import { StatusBar } from "expo-statuar";sb
 
 export default function Home() {
