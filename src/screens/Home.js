@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import { useNavigation } from "@react-navigation/native";
 
 const NewGameButton = ({ onPress }) => (
   <TouchableOpacity style={styles.button} onPress={onPress}>
@@ -13,12 +14,14 @@ const EditPlayersButton = ({ onPress }) => (
 );
 
 export default function Home() {
+  const navigation = useNavigation();
+
   const newGame = () => {
     console.log("New Game");
   };
 
   const editPlayers = () => {
-    console.log("Edit players");
+    navigation.navigate("Players");
   };
 
   return (
