@@ -1,14 +1,33 @@
-import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  FlatList,
+} from "react-native";
 import { StatusBar } from "expo-status-bar";
 
-const EditPlayers = ({ onPress }) => (
+//Adds a button which allows the user to add or edit "Players"
+const EditPlayerButton = ({ onPress }) => (
   <TouchableOpacity style={styles.button} onPress={onPress}>
     <Text style={styles.buttonText}>Add icon instead of text</Text>
   </TouchableOpacity>
 );
-
+//Part of FlatList Functionality
 export default function Players() {
-  const editPlayers2 = () => {
+  const users = [
+    { id: "1", name: "User One" },
+    { id: "2", name: "User Two" },
+  ];
+  //Part of FlatList Functionality
+  const renderUser = ({ item }) => (
+    <View>
+      <Text>{item.name}</Text>
+    </View>
+  );
+
+  //Part of "EditPlayerButton" Functionality
+  const editPlayers = () => {
     console.log("Changing Players");
   };
 
@@ -16,7 +35,12 @@ export default function Players() {
     <View style={styles.container}>
       <Text>Players</Text>
       <StatusBar style="auto" />
-      <EditPlayers onPress={editPlayers2} />
+      <FlatList
+        data={users}
+        renderItem={renderUser}
+        keyExtractor={(item) => item.id}
+      />
+      <EditPlayerButton onPress={editPlayers} />
     </View>
   );
 }

@@ -41,3 +41,26 @@
 - Add a button which resets the score
 - Give a pop up asking if the user is sure to reset the data
 - Create some type of storage where the app remember the number
+
+## Notes:
+
+These Warning came after installing "expo-screen-orientation": "~6.0.5"
+
+And adding the screen orientation code to my "App.js" file.
+
+export default function App() {
+//Used to Set Orientation to Landscape
+useEffect(() => {
+async function setOrientation() {
+await ScreenOrientation.lockAsync(
+ScreenOrientation.OrientationLock.LANDSCAPE
+);
+}
+setOrientation();
+}, []);
+
+TERMINAL WARNING MESSAGES BELOW:
+
+Android Bundling complete 2190ms
+WARN `new NativeEventEmitter()` was called with a non-null argument without the required `addListener` method.
+WARN `new NativeEventEmitter()` was called with a non-null argument without the required `removeListeners` method.
