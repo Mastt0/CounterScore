@@ -6,19 +6,38 @@ import {
   FlatList,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
+import React, { useState, useEffect } from "react";
 
-//Adds a button which allows the user to add or edit "Players"
-const EditPlayerButton = ({ onPress }) => (
-  <TouchableOpacity style={styles.button} onPress={onPress}>
-    <Text style={styles.buttonText}>Add icon instead of text</Text>
-  </TouchableOpacity>
-);
 //Part of FlatList Functionality
-export default function Players() {
-  const users = [
-    { id: "1", name: "User One" },
-    { id: "2", name: "User Two" },
-  ];
+const Players = () => {
+  const [users, setUsers] = useState([]);
+
+  useEffect(() => {
+    loadData();
+  }, []);
+
+  useEffect(() => {
+    saveData();
+  }, [users]);
+
+  const saveData = async () => {
+    try {
+      await AsyncStorage.setItem("users", JSON.stringify(users));
+    } catch (error) {
+      console.log("Error saving data:", error);
+    }
+  };
+
+  const loadData = async () => {
+    try {
+      const value = await AsyncStorage.getItem("users");
+      if (value !== null) {
+        setUsers(JSON.parse(value));
+      }
+    } catch (error) {
+      console.log("Error retrieving data:", error);
+    }
+  };
   //Part of FlatList Functionality
   const renderUser = ({ item }) => (
     <View>
@@ -43,7 +62,14 @@ export default function Players() {
       <EditPlayerButton onPress={editPlayers} />
     </View>
   );
-}
+};
+
+//Adds a button which allows the user to add or edit "Players"
+const EditPlayerButton = ({ onPress }) => (
+  <TouchableOpacity style={styles.button} onPress={onPress}>
+    <Text style={styles.buttonText}>Add icon instead of text</Text>
+  </TouchableOpacity>
+);
 
 const styles = StyleSheet.create({
   container: {
@@ -64,3 +90,5 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
 });
+
+export default Players;
