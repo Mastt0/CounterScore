@@ -4,6 +4,9 @@ import {
   View,
   TouchableOpacity,
   FlatList,
+  Modal,
+  TextInput,
+  Button,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
@@ -11,6 +14,29 @@ import React, { useState, useEffect } from "react";
 //Part of FlatList Functionality
 const Players = () => {
   const [users, setUsers] = useState([]);
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [playerName, setPlayerName] = useState("");
+
+  const toggleModal = () => {
+    setIsModalVisible(!isModalVisible);
+  };
+
+  const handleSubmit = async () => {
+    try {
+      const newPlayer = {
+        id: Math.random().toString(), // generate a random id
+        name: playerName,
+      };
+      const updatedUsers = [...users, newPlayer];
+      setUsers(updatedUsers);
+      await AsyncStorage.setItem("users", JSON.stringify(updatedUsers));
+    } catch (error) {
+      console.log("Error saving data:", error);
+    }
+
+    toggleModal();
+    setPlayerName("");
+  };
 
   useEffect(() => {
     loadData();
@@ -59,16 +85,45 @@ const Players = () => {
         renderItem={renderUser}
         keyExtractor={(item) => item.id}
       />
-      <EditPlayerButton onPress={editPlayers} />
+      <EditPlayerButton
+        onPress={editPlayers}
+        toggleModal={toggleModal}
+        isModalVisible={isModalVisible}
+        setPlayerName={setPlayerName}
+        handleSubmit={handleSubmit}
+      />
     </View>
   );
 };
 
 //Adds a button which allows the user to add or edit "Players"
-const EditPlayerButton = ({ onPress }) => (
-  <TouchableOpacity style={styles.button} onPress={onPress}>
-    <Text style={styles.buttonText}>Add New Player</Text>
-  </TouchableOpacity>
+const EditPlayerButton = ({
+  toggleModal,
+  isModalVisible,
+  setPlayerName,
+  handleSubmit,
+}) => (
+  <View>
+    <TouchableOpacity style={styles.button} onPress={toggleModal}>
+      <Text style={styles.buttonText}>Add New Player</Text>
+    </TouchableOpacity>
+
+    <Modal
+      animationType="slide"
+      transparent={true}
+      visible={isModalVisible}
+      onRequestClose={toggleModal}
+    >
+      <View style={styles.centeredView}>
+        <View style={styles.modalView}>
+          <TextInput placeholder="Player Name" onChangeText={setPlayerName} />
+
+          <Button title="Submit" onPress={handleSubmit} />
+          <Button title="Cancel" onPress={toggleModal} />
+        </View>
+      </View>
+    </Modal>
+  </View>
 );
 
 const styles = StyleSheet.create({
@@ -88,6 +143,27 @@ const styles = StyleSheet.create({
     color: "#fff",
     fontWeight: "bold",
     textAlign: "center",
+  },
+  centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22,
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });
 
