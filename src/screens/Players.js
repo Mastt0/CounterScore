@@ -67,7 +67,7 @@ const Players = () => {
 //Adds a button which allows the user to add or edit "Players"
 const EditPlayerButton = ({ onPress }) => (
   <TouchableOpacity style={styles.button} onPress={onPress}>
-    <Text style={styles.buttonText}>Add icon instead of text</Text>
+    <Text style={styles.buttonText}>Add New Player</Text>
   </TouchableOpacity>
 );
 
